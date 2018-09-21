@@ -6,7 +6,9 @@ import (
 	"net/http"
 )
 
-type searchRequest struct{}
+type searchRequest struct {
+	Query string `json:"query"`
+}
 
 // Search is a handler for the search funcionality
 type Search struct{}
@@ -17,7 +19,7 @@ func (s *Search) ServeHTTP(rw http.ResponseWriter, r *http.Request) {
 
 	request := new(searchRequest)
 	err := decoder.Decode(request)
-	if err != nil {
+	if err != nil || len(request.Query) < 1 {
 		log.Println("hadlers.Search: err unmarshaling,", err)
 		http.Error(rw, "Bad request", http.StatusBadRequest)
 		return
