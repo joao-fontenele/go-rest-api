@@ -6,6 +6,7 @@
 
 - golang 1.11
 - notify-tools: for inotifywait
+- [godog](https://github.com/DATA-DOG/godog/)
 
 This project uses the eperimental modules feature, so you will need to run:
 
